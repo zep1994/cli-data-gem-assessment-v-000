@@ -7,11 +7,8 @@ class TechCliApp::CLI
   end
 
   def list_tech_news
-      puts <<-DOC
-      puts "The Most Recent Tech News is:"
-      1. VR!
-      2. AR!
-        DOC
+    puts "Today's Tech News!"
+    @news = TechCliApp::News.today
   end
 
   def menu
@@ -19,15 +16,12 @@ class TechCliApp::CLI
     input = nil
     while input != "exit"
       input = gets.strip.downcase
-    case input
-    when "1"
-      puts "info 1"
-    when "2"
-      puts "info 2"
-    when "list"
-      list_tech_news
-    else
-      puts "Not sure what you want:/ type list or exit"
+      if input.to_i > 0
+        puts @news[input.to_i-1]
+      elsif input == "list"
+        list_tech_news
+      else
+        puts "Not sure what you want:/ type list or exit"
     end
   end
 end
