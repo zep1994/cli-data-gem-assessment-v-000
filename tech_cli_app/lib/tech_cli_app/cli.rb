@@ -9,6 +9,9 @@ class TechCliApp::CLI
   def list_tech_news
     puts "Today's Tech News!"
     @news = TechCliApp::News.today
+    @news.each.with_index(1) do |news, i|
+      puts "#{i}. #{news.story} - #{news.time}"
+    end
   end
 
   def menu
@@ -17,7 +20,8 @@ class TechCliApp::CLI
     while input != "exit"
       input = gets.strip.downcase
       if input.to_i > 0
-        puts @news[input.to_i-1]
+        the_news = @news[input.to_i-1]
+          puts "#{news.summary}"
       elsif input == "list"
         list_tech_news
       else

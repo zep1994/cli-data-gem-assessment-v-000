@@ -1,26 +1,20 @@
 class TechCliApp::News
-  attr_accessor :stories, :summary, :time
+  attr_accessor :story, :summary, :time
 
   def self.today
-    puts <<-DOC.gsub /^\s*/, ''
-    puts "The Most Recent Tech News is:"
-    1. Italy's Open Fiber enlists banks for $8 billion broadband rollout!
-    2. Russia to ban Telegram messenger over encryption dispute!
-      DOC
+    self.scrape_news
+  end
 
-      news_1 = self.new
-      news_1.stories = "Italy's Open Fiber enlists banks for $8 billion broadband rollout"
-      news_1.summary = "Italy's Open Fiber has enlisted banks to help fund the 6.5 billion euro ($8 billion) rollout of its fast broadband network, it said on Friday,
-                        confirming an earlier Reuters report."
-      news_1.time = "11:32am EDT"
+  def self.scrape_news
+    news = []
+    news << self.scrape_reuters
+    news
+  end
 
-      news_2 = self.new
-      news_2.stories = "Russia to ban Telegram messenger over encryption dispute"
-      news_2.summary = "A Russian court on Friday ordered that access to the Telegram messenger service be blocked in Russia, heralding possible communication disruption
-                        for millions of users in the latest clash between global technology firms and Russian authorities."
-      news_2.time = "11:04am EDT"
-
-        [news_1, news_2]
+  def self.scrape_reuters
+    doc = Nokogiri::HTML(open("https://www.reuters.com/news/archive/technologyNews"))
+    story = doc.search("h3.story-title").text
+    binding.pry
   end
 
 end
