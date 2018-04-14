@@ -8,5 +8,21 @@ class TechCliApp::Scraper
   def scrape_urls
     @doc = Nokogiri::HTML(open('https://www.marketwatch.com/newsviewer'))
 
-    href = []
+    hrefs = []
+    @doc.search("ol.viewport h4 a").each do |a|
+      hrefs << a.attr("href")
+    end
+    hrefs
   end
+
+  def self.scrape_titles
+    @doc = Nokogiri::HTML(open('https://www.marketwatch.com/newsviewer'))
+
+    titles = []
+      @doc.search("ol.viewport h4 a.readmore").each do |h4|
+        titles << h4.text
+      end
+      titles
+  end
+
+end
