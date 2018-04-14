@@ -10,7 +10,7 @@ class TechCliApp::CLI
     puts "Today's Tech News!"
     @news = TechCliApp::News.all
     @news.each.with_index(1) do |news, i|
-      puts "#{i}. #{news.story}"
+      puts "#{i}. #{news.title}"
     end
   end
 
