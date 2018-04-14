@@ -1,5 +1,9 @@
 class TechCliApp::News
   #Class Instance Variable
-  attr_accessor :title, :author, :summary, :href, :content
+  attr_accessor :title, :time, :summary, :href, :content
+  @@all = []
 
+  def save
+      @@all << self
+  end
 end

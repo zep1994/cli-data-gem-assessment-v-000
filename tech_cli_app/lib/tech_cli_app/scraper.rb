@@ -1,28 +1,16 @@
 class TechCliApp::Scraper
 
-  def self.scrape_content(url)
-    @doc = Nokogiri::HTML(open(url))
-    content = @doc.search("div#article-body p").text.strip
-  end
-
-  def scrape_urls
+    def scrape_articles
     @doc = Nokogiri::HTML(open('https://www.marketwatch.com/newsviewer'))
+    @doc.search("li.expandable") each do |article_li|
+      the_news = TechCliApp::News.new
 
-    hrefs = []
-    @doc.search("ol.viewport h4 a").each do |a|
-      hrefs << a.attr("href")
+      the_news.url = article_li.search("div.nv-text-cont h4 a").attr("href")
+      the_news.title = article_li.search("div.nv-text-cont h4").text
+      the_news.time = article_li.search("span.nv-time").text
+      the_news.ummary = article_li.search("p.abs").text
+
+      the_news.save
     end
-    hrefs
   end
-
-  def self.scrape_titles
-    @doc = Nokogiri::HTML(open('https://www.marketwatch.com/newsviewer'))
-
-    titles = []
-      @doc.search("ol.viewport h4 a.readmore").each do |h4|
-        titles << h4.text
-      end
-      titles
-  end
-
 end
