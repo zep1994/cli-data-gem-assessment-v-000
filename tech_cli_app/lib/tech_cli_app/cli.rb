@@ -1,6 +1,7 @@
 class TechCliApp::CLI
 
   def call
+    TechCliApp::Scraper.new.scrape_articles
     list
     menu
     goodbye
@@ -8,7 +9,7 @@ class TechCliApp::CLI
 
   def list
     puts "Today's Tech News!"
-    @news = TechCliApp::News.all
+  news = TechCliApp::News.all
     @news.each.with_index(1) do |news, i|
       puts "#{i}. #{news.title}"
     end
