@@ -1,5 +1,5 @@
 class TechCliApp::News
-  attr_accessor :story, :summary, :time
+  attr_accessor :title, :author, :summary, :href, :content
 
   def self.today
     self.scrape_news
@@ -13,7 +13,7 @@ class TechCliApp::News
 
   def self.scrape_reuters
     doc = Nokogiri::HTML(open("https://www.marketwatch.com/newsviewer"))
-    story = doc.search("h4 a.read-more").text
+    title = doc.search("h4 a.read-more").text
     binding.pry
   end
 
