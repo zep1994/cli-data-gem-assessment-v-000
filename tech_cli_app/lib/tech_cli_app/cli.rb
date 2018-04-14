@@ -1,16 +1,16 @@
 class TechCliApp::CLI
 
   def call
-    list_tech_news
+    list
     menu
     goodbye
   end
 
-  def list_tech_news
+  def list
     puts "Today's Tech News!"
-    @news = TechCliApp::News.today
+    @news = TechCliApp::News.all
     @news.each.with_index(1) do |news, i|
-      puts "#{i}. #{news.story} - #{news.time}"
+      puts "#{i}. #{news.story}"
     end
   end
 
@@ -20,18 +20,14 @@ class TechCliApp::CLI
     while input != "exit"
       input = gets.strip.downcase
       if input.to_i > 0
-        the_news = @news[input.to_i-1]
+        the_news = @news[input.to_i]
           puts "#{news.summary}"
       elsif input == "list"
-        list_tech_news
+        list
       else
-        puts "Not sure what you want:/ type list or exit"
+        puts "goodbye!"
+      end
     end
-  end
-end
-
-  def goodbye
-    puts "See you Later!"
   end
 
 end

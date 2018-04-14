@@ -12,8 +12,8 @@ class TechCliApp::News
   end
 
   def self.scrape_reuters
-    doc = Nokogiri::HTML(open("https://www.reuters.com/news/archive/technologyNews"))
-    story = doc.search("h3.story-title").text
+    doc = Nokogiri::HTML(open("https://www.marketwatch.com/newsviewer"))
+    story = doc.search("h4 a.read-more").text
     binding.pry
   end
 
