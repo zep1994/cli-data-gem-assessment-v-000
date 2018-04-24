@@ -18,10 +18,17 @@ end
   end
 
   def self.scrape_tech
-    doc = Nokogiri::HTML(open("https://www.techrepublic.com/article/microsofts-conference-schedule-for-2018-is-missing-a-few-key-events-is-this-a-new-plan/"))
-    events = doc.search("h3").text
-    months.collect{|mon| new(mon.text.strip, "http://imdb.com#{e.attr("href").split("?").first.strip}")}
-
+    doc = Nokogiri::HTML(open("http://www.alltechconferences.com/"))
+    events = doc.search(".content span[@class='title'] a").text
     end
+  end
+
+  def summary_finder
+    @summary_finder ||= Nokogiri::HTML(open("#{self.url}summary_finder"))
+  end
+
+
+  def doc
+    @doc ||= Nokogiri::HTML(open(self.url))
   end
 end
