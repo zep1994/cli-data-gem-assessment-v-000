@@ -17,7 +17,7 @@ class TechCliApp::CLI
   end
 
   def menu
-    puts "Enter the number of the article you would like to read, type list to relist news or type exit to quit:"
+    puts "Enter the number of the month for list of conferences, type list to relist months or type exit to quit:"
     input = nil
     while input != "exit"
       input = gets.strip.downcase

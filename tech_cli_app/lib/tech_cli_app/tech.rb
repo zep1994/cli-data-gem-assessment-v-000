@@ -4,6 +4,11 @@ class TechCliApp::News
 
   @@all = []
 
+#initialize
+def initialize
+    @@all == self
+end
+
   def self.all?
     @@all
   end
