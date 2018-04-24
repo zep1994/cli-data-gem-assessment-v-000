@@ -9,8 +9,8 @@ def initialize
     @@all == self
 end
 
-  def self.all?
-    @@all
+  def self.all
+    @@all ||= scrape_tech
   end
 
   def save
@@ -18,7 +18,10 @@ end
   end
 
   def self.scrape_tech
-    doc = Nokogiri::HTML(open("https://www.techrepublic.com/article/2018-tech-conferences-and-events-to-add-to-your-calendar/"))
-    months = doc.search("h2").text
+    doc = Nokogiri::HTML(open("https://www.techrepublic.com/article/microsofts-conference-schedule-for-2018-is-missing-a-few-key-events-is-this-a-new-plan/"))
+    events = doc.search("h3").text
+    months.collect{|mon| new(mon.text.strip, "http://imdb.com#{e.attr("href").split("?").first.strip}")}
+
+    end
   end
 end
