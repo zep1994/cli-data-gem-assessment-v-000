@@ -1,6 +1,7 @@
 class TechCliApp::News
   #Class Instance Variable
-  attr_accessor :title, :date, :summary, :url
+  attr_accessor :name, :origin, :genres, :labels, :past_members, :url
+
   @@all = []
 
   def self.all?
