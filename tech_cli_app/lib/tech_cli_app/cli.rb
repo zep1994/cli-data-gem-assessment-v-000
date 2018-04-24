@@ -1,17 +1,17 @@
 class TechCliApp::CLI
 
   def call
-    TechCliApp::Scraper.new.scrape_articles
+    TechCliApp::Scraper.new.scrape_tech
     list
     menu
     goodbye
   end
 
-  def list
-    puts "Today's Tech News!"
-  news = TechCliApp::News.all
-    @news.each.with_index(1) do |news, i|
-      puts "#{i}. #{news.title}"
+  def months
+    puts "Months with conferences:"
+  month = TechCliApp::Tech.all
+    @month.each.with_index(1) do |month, i|
+      puts "#{i}. #{month}"
     end
 
   end
@@ -22,14 +22,13 @@ class TechCliApp::CLI
     while input != "exit"
       input = gets.strip.downcase
       if input.to_i > 0
-
-        the_news = @news[input.to_i]
-          puts "#{news.summary}"
-        the_news = @news[input.to_i-1]
-        puts "#{news.summary}"
-        puts @news[input.to_i-1]
+        the_news = @month[input.to_i]
+          puts "#{month.summary}"
+        the_news = @month[input.to_i-1]
+        puts "#{month.summary}"
+        puts @month[input.to_i-1]
       elsif input == "list"
-        list
+        months
       else
         puts "goodbye!"
       end
