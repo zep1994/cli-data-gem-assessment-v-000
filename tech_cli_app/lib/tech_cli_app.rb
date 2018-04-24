@@ -4,7 +4,7 @@ require 'open-uri'
 
 require_relative "tech_cli_app/version"
 require_relative "tech_cli_app/cli"
-require_relative "tech_cli_app/news"
+require_relative "tech_cli_app/tech"
 
 module TechCliApp
   # Your code goes here...
