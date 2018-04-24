@@ -1,6 +1,6 @@
 class TechCliApp::Tech
   #Class Instance Variable
-  attr_accessor :name, :origin, :genres, :labels, :past_members, :url
+  attr_accessor :month, :date, :lacation, :host, :url
 
   @@all = []
 
