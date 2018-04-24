@@ -13,6 +13,7 @@ class TechCliApp::CLI
     @news.each.with_index(1) do |news, i|
       puts "#{i}. #{news.title}"
     end
+
   end
 
   def menu
@@ -21,8 +22,12 @@ class TechCliApp::CLI
     while input != "exit"
       input = gets.strip.downcase
       if input.to_i > 0
+
         the_news = @news[input.to_i]
           puts "#{news.summary}"
+        the_news = @news[input.to_i-1]
+        puts "#{news.summary}"
+        puts @news[input.to_i-1]
       elsif input == "list"
         list
       else

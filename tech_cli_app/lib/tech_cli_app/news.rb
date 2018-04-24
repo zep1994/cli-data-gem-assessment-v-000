@@ -1,13 +1,5 @@
-class TechCliApp::News
+class TechCliApp::Movies
   #Class Instance Variable
-  attr_accessor :title, :time, :summary, :url, :content
-  @@all = []
+  attr_accessor :title, :date, :summary, :url
 
-  def self.all?
-    @@all
-  end
-
-  def save
-      @@all << self
-  end
 end
