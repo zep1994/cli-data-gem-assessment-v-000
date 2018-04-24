@@ -34,16 +34,16 @@ end
       input = gets.strip
       if input == "list"
         list
-      elsif input.to_i > 0
+      elsif input.to_i == 0
         if tech = @month[input.to_i]
-          puts "#{month}"
+          print_conf(tech)
+        end
+      elsif input.to_i > 0
         if tech = @month[input.to_i-1]
-        puts "#{month}"
-        puts @month[input.to_i-1]
-      else
-        puts "goodbye!"
+        print_conf(tech)
+        end
       end
     end
+  puts "Goodbye!"
   end
-
 end
