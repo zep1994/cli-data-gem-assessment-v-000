@@ -1,34 +1,30 @@
 class TechCliApp::Tech
   #Class Instance Variable
-  attr_accessor :month, :date, :lacation, :host, :url
+  attr_accessor :title, :date, :location, :summary, :url
 
-  @@all = []
+  #save events in all
+  def self.today
+    self.scrape_news
+  end
 
-#initialize
-def initialize
-    @@all == self
+def self.scrape_news
+  techs = []
+
+  techs << self.scrape_tech
+
+techs
+
 end
-
-  def self.all
-    @@all ||= scrape_tech
-  end
-
-  def save
-      @@all << self
-  end
 
   def self.scrape_tech
     doc = Nokogiri::HTML(open("http://www.alltechconferences.com/"))
-    events = doc.search(".content span[@class='title'] a").text
-    end
-  end
 
-  def summary_finder
-    @summary_finder ||= Nokogiri::HTML(open("#{self.url}summary_finder"))
-  end
+    tech = self.new
+    tech.title = doc.search("span.title a").text.strip
+    tech.date = doc.search("div.post.event span.date").text.strip
+    tech.location = doc.search("div.post.event span.title b").text
+    tech.url = doc.search("a").first.attr("href").strip
 
-
-  def doc
-    @doc ||= Nokogiri::HTML(open(self.url))
+  tech
   end
 end

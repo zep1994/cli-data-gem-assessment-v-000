@@ -2,48 +2,38 @@ class TechCliApp::CLI
 
 #start method which grabs from list is displayed here
   def call
-    start
+    list
+    menu
+    goodbye
   end
 
   #list months with each.with_index(1) for first index
   def list
-    puts "Months with conferences:"
-  month = TechCliApp::Tech.all
-    @month.each.with_index(1) do |month, i|
-      puts "#{i}. #{month}"
+    puts "Events for Tech:"
+    @events = TechCliApp::Tech.today
+    @events.each.with_index(1) do |event, i|
+      puts "#{i}. #{event.title} - #{event.date} - #{event.location}"
     end
-
   end
 
-  #print tech conference info
-def print_conf(tech)
-  puts "This looks like a good one"
-  puts "#{tech.month}"
-  puts "#{tech.date}"
-  puts "#{tech.location}"
-  puts "#{tech.host}"
-  puts ""
-end
-
-  def start
-    #call list
-    list
+  def menu
     input = nil
     while input != "exit"
       puts "Enter the number of the month for list of conferences, type list to relist months or type exit to quit:"
-      input = gets.strip
-      if input == "list"
+      input = gets.strip.downcase
+
+      if input.to_i > 0
+        the_event = @events[input.to_i-1]
+        puts "#{the_event.title} - #{the_event.date} - #{the_event.location}"
+      elsif input == "list"
         list
-      elsif input.to_i == 0
-        if tech = @month[input.to_i]
-          print_conf(tech)
-        end
-      elsif input.to_i > 0
-        if tech = @month[input.to_i-1]
-        print_conf(tech)
+      else
+    puts "not sure"
         end
       end
     end
+
+def goodbye
   puts "Goodbye!"
-  end
+end
 end
