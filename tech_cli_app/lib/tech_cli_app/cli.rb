@@ -23,9 +23,9 @@ class TechCliApp::CLI
       input = gets.strip.downcase
       if input.to_i > 0
         the_news = @month[input.to_i]
-          puts "#{month.summary}"
+          puts "#{month}"
         the_news = @month[input.to_i-1]
-        puts "#{month.summary}"
+        puts "#{month}"
         puts @month[input.to_i-1]
       elsif input == "list"
         months
