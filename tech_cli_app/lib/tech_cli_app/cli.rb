@@ -16,7 +16,7 @@ class TechCliApp::CLI
   end
 
   #print tech conference info
-def print_conf
+def print_conf(tech)
   puts "This looks like a good one"
   puts "#{tech.month}"
   puts "#{tech.date}"
@@ -35,9 +35,9 @@ end
       if input == "list"
         list
       elsif input.to_i > 0
-        the_news = @month[input.to_i]
+        if tech = @month[input.to_i]
           puts "#{month}"
-        the_news = @month[input.to_i-1]
+        if tech = @month[input.to_i-1]
         puts "#{month}"
         puts @month[input.to_i-1]
       else
