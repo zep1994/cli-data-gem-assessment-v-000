@@ -5,12 +5,28 @@ class TechCliApp::Tech
 @@all = []
 
   def self.all
-      @@all << tech
+    @@all ||= scrape_tech
   end
 
   def self.find(id)
     self.all[id-1]
   end
+
+  def self.find_by_name(title)
+     self.all.detect do |conf|
+       conf.name.downcase.strip == name.downcase.strip ||
+       conf.name.split("(").first.strip.downcase == name.downcase.strip
+     end
+   end
+
+
+  def self.find_by_name(title)
+     self.all.detect do |conf|
+       conf.name.downcase.strip == name.downcase.strip ||
+       conf.name.split("(").first.strip.downcase == name.downcase.strip
+     end
+   end
+
 
   def self.scrape_tech
     doc = Nokogiri::HTML(open("http://www.alltechconferences.com/"))
