@@ -8,6 +8,9 @@ class TechCliApp::Tech
       @@all << tech
   end
 
+  def self.find(id)
+    self.all[id-1]
+  end
 
   def self.scrape_tech
     doc = Nokogiri::HTML(open("http://www.alltechconferences.com/"))
