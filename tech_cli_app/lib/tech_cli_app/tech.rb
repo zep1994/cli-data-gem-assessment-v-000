@@ -5,33 +5,27 @@ class TechCliApp::Tech
 @@all = []
 
   def self.all
-      @@all
+      @@all << tech
   end
   
   #save events in all
   def self.today
-    self.scrape_news
+    self.scrape_tech
   end
 
-def self.scrape_news
-  techs = []
-
-  techs << self.scrape_tech
-
-techs
-
-end
+  def self.all 
+    @@all
+  end
 
   def self.scrape_tech
     doc = Nokogiri::HTML(open("http://www.alltechconferences.com/"))
     doc.css('div.post.event').each do |div|
       tech = self.new
       tech.title = div.search("span.title a").text.strip
-      tech.date = div.search("span.date").text
-      tech.location = div.search("span.title b").text
-      tech.url = doc.search("a").first.attr("href").strip
+      tech.date = div.search("span.date").text.gsub("\r", "").gsub("\t", "").gsub("\n", "")
+      tech.location = div.search("span.title b").text.gsub("\r", "").gsub("\t", "").gsub("\n", "")
+      tech.url = doc.search("a").first.attr("href").strip.gsub("\r", "").gsub("\t", "").gsub("\n", "")
       @@all << tech
     end
-    tech.date.gsub("\r", "").gsub("\t", "").gsub("\n", "")
   end
 end
