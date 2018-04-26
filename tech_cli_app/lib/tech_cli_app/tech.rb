@@ -7,15 +7,7 @@ class TechCliApp::Tech
   def self.all
       @@all << tech
   end
-  
-  #save events in all
-  def self.today
-    self.scrape_tech
-  end
 
-  def self.all 
-    @@all
-  end
 
   def self.scrape_tech
     doc = Nokogiri::HTML(open("http://www.alltechconferences.com/"))
