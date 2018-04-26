@@ -14,16 +14,16 @@ class TechCliApp::Tech
 
   def self.find_by_name(title)
      self.all.detect do |conf|
-       conf.name.downcase.strip == name.downcase.strip ||
-       conf.name.split("(").first.strip.downcase == name.downcase.strip
+       conf.title.downcase.strip == title.downcase.strip ||
+       conf.title.split("(").first.strip.downcase == title.downcase.strip
      end
    end
 
 
   def self.find_by_name(title)
      self.all.detect do |conf|
-       conf.name.downcase.strip == name.downcase.strip ||
-       conf.name.split("(").first.strip.downcase == name.downcase.strip
+       conf.title.downcase.strip == title.downcase.strip ||
+       conf.title.split("(").first.strip.downcase == title.downcase.strip
      end
    end
 
