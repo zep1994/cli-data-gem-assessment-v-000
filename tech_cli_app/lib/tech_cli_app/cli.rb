@@ -9,21 +9,21 @@ class TechCliApp::CLI
   #list months with each.with_index(1) for first index
   def list
     puts "Events for Tech:"
-    TechCliApp::Tech.all.each.with_index(1) do |event, i|
-      puts "#{i}. #{event.title}"
+    TechCliApp::Tech.all.each.with_index(1) do |tech, i|
+      puts "#{i}. #{tech.title}"
     end
   end
 
 
-  def print_tech(event)
+  def print_tech(tech)
     puts ""
-    puts "-------------- #{event.title} --------------"
+    puts "-------------- #{tech.title} --------------"
 
     puts ""
-    puts event.summary
+    puts tech.summary
     puts ""
 
-    puts "Events: #{event.title}"
+    puts "Events: #{tech.date}"
     puts ""
   end
 
@@ -42,12 +42,12 @@ class TechCliApp::CLI
         if input == "list"
           list
         elsif input.to_i == 0
-          if movie = TechCliApp::Tech.find_by_name(input)
-            print_tech(event)
+          if tech = TechCliApp::Tech.find_by_name(input)
+            print_tech(tech)
           end
         elsif input.to_i > 0
-          if movie = TechCliApp::Tech.find(input.to_i)
-            print_tech(event)
+          if tech = TechCliApp::Tech.find(input.to_i)
+            print_tech(tech)
           end
         end
       end
