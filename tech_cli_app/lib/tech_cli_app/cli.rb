@@ -19,7 +19,7 @@ class TechCliApp::CLI
     puts ""
     puts "-------------- #{tech.title} --------------"
     puts ""
-    puts tech.summary
+    puts "#{tech.summary}"
     puts ""
     puts "Location: #{tech.location}"
     puts ""
@@ -52,4 +52,5 @@ class TechCliApp::CLI
       puts "Goodbye!!!"
     end
   end
+
 
