@@ -2,7 +2,6 @@ class TechCliApp::Tech
   #Class Instance Variable
   attr_accessor :title, :date, :location, :summary, :url
 
-@@all = []
   def initialize(title = nil, url = nil)
     @title = title
     @url = url
@@ -24,7 +23,7 @@ end
    end
 
   def date
-   tech.date = div.search("span.date").text.gsub("\r", "").gsub("\t", "").gsub("\n", "")
+  @date ||= tech.date = div.search("span.date").text.gsub("\r", "").gsub("\t", "").gsub("\n", "")
   end 
 
   def location
@@ -34,11 +33,10 @@ end
 private
   def self.scrape_tech
     doc = Nokogiri::HTML(open("http://www.alltechconferences.com/"))
-    doc.css('div.post.event').each do |div|
+    doc.css('div.post.event').collect do |div|
       tech = self.new
-      tech.title = div.search("span.title a").text.strip
-      tech.url = doc.search("a").first.attr("href").strip.gsub("\r", "").gsub("\t", "").gsub("\n", "")
-      @@all << tech
+      titles = div.search("span.title a").text.strip
+      urls = doc.search("a").first.attr("href").strip.gsub("\r", "").gsub("\t", "").gsub("\n", "")
     end
   end
 end
