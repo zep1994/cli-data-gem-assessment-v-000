@@ -18,6 +18,11 @@ class TechCliApp::CLI
   def print_tech(tech)
     puts ""
     puts "-------------- #{tech.title} --------------"
+    puts ""
+    puts tech.summary
+    puts ""
+    puts "Location: #{tech.location}"
+    puts ""
   end
 
 

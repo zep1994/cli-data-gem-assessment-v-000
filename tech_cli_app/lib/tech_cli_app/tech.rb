@@ -23,7 +23,7 @@ end
    end
 
   def summary
-  @summary ||= event.search("div.entry-content").text.gsub("\r", "").gsub("\t", "").gsub("\n", "")
+  @summary ||= event.search("div.entry-content p").text.gsub("\r", "").gsub("\t", "").gsub("\n", "")
   end 
 
   def location
