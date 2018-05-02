@@ -22,21 +22,38 @@ end
      end
    end
 
-  def date
-  @date ||= tech.date = div.search("span.date").text.gsub("\r", "").gsub("\t", "").gsub("\n", "")
+  def summary
+  @summary ||= event.search("div.entry-content").text.gsub("\r", "").gsub("\t", "").gsub("\n", "")
   end 
 
   def location
-   tech.location = div.search("span.title b").text.gsub("\r", "").gsub("\t", "").gsub("\n", "")
+   @location ||= div.search("span.title b").text.gsub("\r", "").gsub("\t", "").gsub("\n", "")
   end
 
 private
   def self.scrape_tech
     doc = Nokogiri::HTML(open("http://www.alltechconferences.com/"))
-    doc.css('div.post.event').collect do |div|
-      tech = self.new
-      titles = div.search("span.title a").text.strip
-      urls = doc.search("a").first.attr("href").strip.gsub("\r", "").gsub("\t", "").gsub("\n", "")
+    titles = doc.css('div.post.event span.title a')
+    titles.collect{|name| new(name.text.strip, "http://www.alltechconferences.com#{name.attr("href").split("?").first.strip}")}
     end
+
+  def event
+    @event ||= Nokogiri::(HTML(open("#{self.url}event")))
   end
+
+  def doc
+    @doc ||= Nokogiri::HTML(open(self.url))
+  end
+
 end
+
+#def self.scrape_tech
+#  doc = Nokogiri::HTML(open("http://www.alltechconferences.com/"))
+#  doc.css('div.post.event').collect do |div|
+#    tech = self.new
+#    titles = div.search("span.title a").text.strip
+#    urls = doc.search("a").first.attr("href").strip.gsub("\r", "").gsub("\t", "").gsub("\n", "")
+#  end
+#end
+#end
+
