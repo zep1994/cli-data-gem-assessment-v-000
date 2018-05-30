@@ -24,7 +24,7 @@ end
 
   def summary
   @summary ||= event.search("div.entry-content p").text.strip
-  end 
+  end
 
   def location
    @location ||= div.search("span.title b").text.gsub("\r", "").gsub("\t", "").gsub("\n", "")
@@ -38,7 +38,7 @@ private
     end
 
   def event
-    @event ||= Nokogiri::(HTML(open("#{self.url}event")))
+    @event ||= Nokogiri::HTML(open("#{self.url}event"))
   end
 
   def doc
@@ -56,4 +56,3 @@ end
 #  end
 #end
 #end
-

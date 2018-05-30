@@ -52,5 +52,3 @@ class TechCliApp::CLI
       puts "Goodbye!!!"
     end
   end
-
-
