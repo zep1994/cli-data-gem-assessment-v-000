@@ -32,17 +32,13 @@ end
 
 private
   def self.scrape_tech
-    doc = Nokogiri::HTML(open("http://www.alltechconferences.com/"))
-    titles = doc.css('div.post.event span.title a')
-    titles.collect{|name| new(name.text.strip, "http://www.alltechconferences.com#{name.attr("href").split("?").first.strip}")}
+    event = Nokogiri::HTML(open("http://www.alltechconferences.com/"))
+    titles = event.css('div.post.event span.title a')
+    titles.collect{|name| new(name.text.strip, name.attr("href").split("?").first.strip)}
     end
 
-  def event
-    @event ||= Nokogiri::HTML(open("#{self.url}event"))
-  end
-
   def doc
-    @doc ||= Nokogiri::HTML(open(self.url))
+    @event ||= Nokogiri::HTML(open(self.url))
   end
 
 end
