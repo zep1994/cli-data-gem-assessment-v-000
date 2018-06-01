@@ -23,11 +23,11 @@ end
    end
 
   def summary
-  @summary ||= event.search("div.entry-content p").text.strip
+  @summary ||= doc.search("div.entry-content p").text.strip
   end
 
   def location
-   @location ||= div.search("span.title b").text.gsub("\r", "").gsub("\t", "").gsub("\n", "")
+   @location ||= doc.search("span.title b").text.gsub("\r", "").gsub("\t", "").gsub("\n", "")
   end
 
 private
