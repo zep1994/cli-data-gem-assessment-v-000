@@ -27,7 +27,9 @@ end
   end
 
   def location
-   @location ||= doc.search("span.title b").text.gsub("\r", "").gsub("\t", "").gsub("\n", "")
+   @location ||= doc.search("div.event_detail p.location").text
+   binding.pry
+   #.gsub("\r", "").gsub("\t", "").gsub("\n", "")
   end
 
 private
