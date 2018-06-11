@@ -21,7 +21,6 @@ class TechCliApp::CLI
     puts ""
     puts "#{tech.summary}"
     puts ""
-    puts "Location: #{tech.location}"
     puts ""
   end
 

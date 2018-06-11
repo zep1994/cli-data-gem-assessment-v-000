@@ -1,6 +1,6 @@
 class TechCliApp::Tech
   #Class Instance Variable
-  attr_accessor :title, :date, :location, :summary, :url
+  attr_accessor :title, :date, :summary, :url
 
   def initialize(title = nil, url = nil)
     @title = title
@@ -26,12 +26,7 @@ end
   @summary ||= doc.search("div.entry-content p").text.strip
   end
 
-  def location
-   @location ||= doc.search("div.event_detail p.location").text
-   binding.pry
-   #.gsub("\r", "").gsub("\t", "").gsub("\n", "")
-  end
-
+  
 private
   def self.scrape_tech
     event = Nokogiri::HTML(open("http://www.alltechconferences.com/"))
