@@ -9,6 +9,7 @@ class TechCliApp::CLI
   #list months with each.with_index(1) for first index
   def list
     puts "Events for Tech:"
+    puts ""
     TechCliApp::Tech.all.each.with_index(1) do |tech, i|
       puts "#{i}. #{tech.title}"
     end
@@ -48,6 +49,8 @@ class TechCliApp::CLI
           end
         end
       end
+      puts ""
+      puts ""
       puts "Goodbye!!!"
     end
   end
