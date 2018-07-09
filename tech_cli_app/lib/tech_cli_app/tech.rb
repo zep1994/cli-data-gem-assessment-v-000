@@ -22,12 +22,9 @@ end
      end
    end
 
-  def summary
-  @summary ||= doc.search("div.entry-content p").text.strip
-  end
-
+ 
   
-private
+#private
  # def self.scrape_tech
  #   event = Nokogiri::HTML(open("http://www.alltechconferences.com/"))
   #  titles = event.css('div.post.event span.title a')
