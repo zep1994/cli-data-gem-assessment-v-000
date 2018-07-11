@@ -44,12 +44,12 @@
          #   print_tech(tech)
          # end
         elsif input.to_i > 0 && input.to_i <= TechCliApp::Tech.all.length
-        binding.pry
+       # binding.pry
           if tech = TechCliApp::Tech.find(input.to_i)
             print_tech(tech)
           end
         elsif
-        binding.pry
+       # binding.pry
           puts "I do not understand that."
         end
       end
