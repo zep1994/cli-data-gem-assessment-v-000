@@ -7,7 +7,7 @@ class TechCliApp::Scraper
    def self.scrape_tech
     event = Nokogiri::HTML(open("http://www.alltechconferences.com/"))
     titles = event.css('div.post.event span.title a')
-    titles.collect{|name| new(name.text.strip, name.attr("href").split("?").first.strip)}
+    titles.collect{|name| TechCliApp::Tech.new(name.text.strip, name.attr("href").split("?").first.strip)}
     end
 
   def doc
