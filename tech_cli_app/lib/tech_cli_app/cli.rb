@@ -43,10 +43,12 @@
         #  if tech = TechCliApp::Tech.find_by_name(input)
          #   print_tech(tech)
          # end
-        elsif input.to_i > 0 && input.to_i < TechCliApp::Tech.all.length
+        elsif input.to_i > 0 && input.to_i <= TechCliApp::Tech.all.length
           if tech = TechCliApp::Tech.find(input.to_i)
             print_tech(tech)
           end
+        elsif
+          puts "I do not understand that."
         end
       end
       puts ""
