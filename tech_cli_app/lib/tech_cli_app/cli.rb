@@ -20,7 +20,7 @@
     puts ""
     puts "-------------- #{tech.title} --------------"
     puts ""
-    puts "#{tech.summary}"
+    puts "#{TechCliApp::Scraper.summary.tech}"
     puts ""
     puts ""
   end
