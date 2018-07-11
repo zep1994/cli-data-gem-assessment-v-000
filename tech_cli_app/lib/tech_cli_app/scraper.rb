@@ -1,6 +1,6 @@
 class TechCliApp::Scraper
   
-   def summary
+   def self.summary
   @summary ||= doc.search("div.entry-content p").text.strip
   end
 
