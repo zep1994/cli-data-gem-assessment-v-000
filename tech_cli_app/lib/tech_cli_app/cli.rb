@@ -1,4 +1,4 @@
-class TechCliApp::CLI
+ class TechCliApp::CLI
 
 #start method which grabs from list is displayed here
   def call
@@ -20,7 +20,7 @@ class TechCliApp::CLI
     puts ""
     puts "-------------- #{tech.title} --------------"
     puts ""
-    puts "#{tech.summary}"
+    puts "#{TechCliApp::Scraper.summary(tech)}"
     puts ""
     puts ""
   end
@@ -39,14 +39,18 @@ class TechCliApp::CLI
         input = gets.strip
         if input == "list"
           list
-        elsif input.to_i == 0
-          if tech = TechCliApp::Tech.find_by_name(input)
-            print_tech(tech)
-          end
-        elsif input.to_i > 0
+        #elsif input.to_i == 0
+        #  if tech = TechCliApp::Tech.find_by_name(input)
+         #   print_tech(tech)
+         # end
+        elsif input.to_i > 0 && input.to_i <= TechCliApp::Tech.all.length
+       # binding.pry
           if tech = TechCliApp::Tech.find(input.to_i)
             print_tech(tech)
           end
+        elsif
+       # binding.pry
+          puts "I do not understand that."
         end
       end
       puts ""
