@@ -1,4 +1,4 @@
-class TechCliApp::Tech
+class TechCliApp::Scraper
   
    def summary
   @summary ||= doc.search("div.entry-content p").text.strip
