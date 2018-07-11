@@ -11,6 +11,6 @@ class TechCliApp::Scraper
     end
 
   def self.doc(tech)
-    @event ||= Nokogiri::HTML(open(tech.url))
+   Nokogiri::HTML(open(tech.url))
   end
 end
