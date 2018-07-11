@@ -39,10 +39,10 @@ class TechCliApp::CLI
         input = gets.strip
         if input == "list"
           list
-        elsif input.to_i == 0
-          if tech = TechCliApp::Tech.find_by_name(input)
-            print_tech(tech)
-          end
+        #elsif input.to_i == 0
+        #  if tech = TechCliApp::Tech.find_by_name(input)
+         #   print_tech(tech)
+         # end
         elsif input.to_i > 0
           if tech = TechCliApp::Tech.find(input.to_i)
             print_tech(tech)
