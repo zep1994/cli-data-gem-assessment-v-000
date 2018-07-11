@@ -1,7 +1,7 @@
 class TechCliApp::Scraper
   
    def self.summary(tech)
-  tech.summary ||= doc.search("div.entry-content p").text.strip
+  tech.summary ||= self.doc.search("div.entry-content p").text.strip
   end
 
    def self.scrape_tech
@@ -10,7 +10,7 @@ class TechCliApp::Scraper
     titles.collect{|name| TechCliApp::Tech.new(name.text.strip, name.attr("href").split("?").first.strip)}
     end
 
-  def doc
+  def self.doc
     @event ||= Nokogiri::HTML(open(self.url))
   end
 end
