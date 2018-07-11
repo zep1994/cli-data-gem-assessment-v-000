@@ -8,7 +8,7 @@ class TechCliApp::Tech
 end
 
   def self.all
-    @@all ||= scrape_tech
+    @@all ||= TechCliApp::Scraperscrape_tech
   end
 
   def self.find(id)
